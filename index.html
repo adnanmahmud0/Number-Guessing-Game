@@ -4,15 +4,151 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Number Guessing Game</title>
-    <link rel="icon" type="image/x-icon" href="./image/confused.png">
-    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/x-icon" href="https://thumbs.dreamstime.com/b/premium-black-number-logo-design-simple-typography-vector-illustration-343216013.jpg">
+    <style>
+        
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+        .poppins {
+            font-family: "Poppins", sans-serif;
+        }
+
+        body {
+            margin: 0;
+            background-color: #E0680E;
+        }
+
+        header {
+            background-color: #12CCA8;
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 0 auto;
+            max-width: 1080px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        h6 {
+            line-height: 10px;
+        }
+
+        .logo-section{
+            display: flex;
+            align-items: center;
+        }
+
+        .logo {
+            width: 25px;
+            height: 25px;
+        }
+
+        .rsbutton {
+            padding: 10px 20px;
+            border-radius: 9999px;
+            border: none;
+            background-color: #fff;
+            color: #12CCA8;
+        }
+
+        .rsbutton:hover {
+            background-color: #FFAA00;
+            color: #fff;
+        }
+
+        main {
+            background-color: #001724;
+        }
+
+        h1 {
+            color: #333;
+        }
+        img {
+            border-radius: 9999px;
+            padding: 5px;
+        }
+
+        .game-container {
+            text-align: center;
+            max-width: 300px;
+            padding: 20px;
+            background-color: #DA40FF;
+            border-radius: 10px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        input[type="number"] {
+            width: 80%;
+            padding: 10px 25px;
+            margin: 10px 0;
+            font-size: 16px;
+            border: 1px solid #ddd;
+            border-radius: 9999px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            margin: 5px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .submit-btn {
+            background-color: #FFAA00;
+            color: white;
+            border-radius: 9999px;
+        }
+
+        .message {
+            margin-top: 15px;
+            font-weight: bold;
+        }
+
+        .logo-main{
+            width: 50px;
+        }
+
+        .mx-auto{
+            display: flex;
+            justify-content: center;
+            padding: 30px 0px;
+        }
+
+        footer{
+            text-align: center;
+        }
+
+        .logo-footer{
+            padding-top: 10px;
+        }
+
+        @media (max-width: 600px) {
+            
+            .nav {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .rsbutton {
+                width: 100%;
+                margin-bottom: 20px;
+            }
+
+        }
+
+    </style>
 </head>
 <body class="poppins">
     <!-- header section start -->
     <header>
         <div class="nav">
             <div class="logo-section">
-                <img class="logo" src="./image/confused.png" alt="guess_the_number_logo">
+                <img class="logo" src="https://thumbs.dreamstime.com/b/premium-black-number-logo-design-simple-typography-vector-illustration-343216013.jpg" alt="guess_the_number_logo">
                 <h6>Guess<br>The<br>Number</h6>
             </div>
             <div>
@@ -26,7 +162,7 @@
     <!-- main section start -->
     <main class="mx-auto">
         <div class="game-container">
-            <img class="logo-main" src="./image/confused.png" alt="guess_the_number_logo">
+            <img class="logo-main" src="https://thumbs.dreamstime.com/b/premium-black-number-logo-design-simple-typography-vector-illustration-343216013.jpg" alt="guess_the_number_logo">
             <p>Guess a number between 1 and 100:</p>
             <input type="number" id="guessInput" placeholder="Enter your guess" min="1" max="100">
             <button class="submit-btn" onclick="submitGuess()">Submit Guess</button>
@@ -49,7 +185,57 @@
     <!-- footer section end -->
 
     <!-- start script section -->
-    <script src="./script.js"></script>
+    <script>
+        let randomNumber;
+        let attemptsLeft;
+        const maxAttempts = 10;
+
+        function startGame() {
+            randomNumber = Math.floor(Math.random() * 100) + 1;
+            attemptsLeft = maxAttempts;
+            document.getElementById("message").textContent = "";
+            document.getElementById("attemptsLeft").textContent = `Attempts left: ${attemptsLeft}`;
+            document.getElementById("guessInput").value = "";
+            document.getElementById("guessInput").disabled = false;
+            document.querySelector(".submit-btn").disabled = false;
+        }
+
+        function submitGuess() {
+            const userGuess = parseInt(document.getElementById("guessInput").value);
+            if (isNaN(userGuess) || userGuess < 1 || userGuess > 100) {
+                document.getElementById("message").textContent = "Please enter a valid number between 1 and 100.";
+                return;
+            }
+
+            attemptsLeft--;
+            document.getElementById("attemptsLeft").textContent = `Attempts left: ${attemptsLeft}`;
+
+            if (userGuess === randomNumber) {
+                document.getElementById("message").textContent = "Congratulations! You guessed it!";
+                endGame();
+            } else if (userGuess < randomNumber) {
+                document.getElementById("message").textContent = "Too low!";
+            } else {
+                document.getElementById("message").textContent = "Too high!";
+            }
+
+            if (attemptsLeft === 0 && userGuess !== randomNumber) {
+                document.getElementById("message").textContent = "Game Over! You've used all attempts.";
+                endGame();
+            }
+        }
+
+        function endGame() {
+            document.getElementById("guessInput").disabled = true;
+            document.querySelector(".submit-btn").disabled = true;
+        }
+
+        function restartGame() {
+            startGame();
+        }
+
+        window.onload = startGame;
+    </script>
     <!-- end script section -->
 
 </body>
