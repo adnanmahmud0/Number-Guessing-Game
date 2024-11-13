@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Number Guessing Game</title>
+    <link rel="icon" type="image/x-icon" href="./image/confused.png">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="poppins">
+    <!-- header section start -->
+    <header>
+        <div class="nav">
+            <div class="logo-section">
+                <img class="logo" src="./image/confused.png" alt="guess_the_number_logo">
+                <h6>Guess<br>The<br>Number</h6>
+            </div>
+            <div>
+                <button class="rsbutton" onclick="restartGame()">Restart Game</button>
+            </div>
+        </div>
+
+    </header>
+    <!-- header section end -->
+
+    <!-- main section start -->
+    <main class="mx-auto">
+        <div class="game-container">
+            <img class="logo-main" src="./image/confused.png" alt="guess_the_number_logo">
+            <p>Guess a number between 1 and 100:</p>
+            <input type="number" id="guessInput" placeholder="Enter your guess" min="1" max="100">
+            <button class="submit-btn" onclick="submitGuess()">Submit Guess</button>
+            <div class="message" id="message"></div>
+            <p id="attemptsLeft"></p>
+          </div>
+    </main>
+    <!-- main section end -->
+
+     <!-- footer section start -->
+    <footer>
+        <div>
+            <img class="logo-main logo-footer" src="./image/confused.png" alt="guess_the_number_logo">
+            <p>A number guessing game where the computer picks a random number between 1 and 100, and the<br>player has 10 attempts to guess it, receiving feedback ("Too high," "Too low," or "Congratulations!")<br>after each guess, with an option to restart after winning or exhausting attempts.</p>
+        </div>
+        <div>
+            <p><b>MD ADNAN MAHMUD<br><u>ID</u>: 212-15-4155 <u>SECTION</u>: 59_A1</b></p>
+        </div>
+    </footer>
+    <!-- footer section end -->
+
+    <!-- start script section -->
+    <script src="./script.js"></script>
+    <!-- end script section -->
+
+</body>
+</html>
